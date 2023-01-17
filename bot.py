@@ -66,14 +66,14 @@ def askPassword(message):
     generate_token(chat_id,)
 
 def generate_token(chat_id):
-    r = requests.api.post("http://127.0.0.1:8000/api-token-auth/", data=login_data)
+    r = requests.api.post("https://factory-bot-site.herokuapp.com//api-token-auth/", data=login_data)
     if(r.status_code == 200):
-        r2 = requests.api.post("http://127.0.0.1:8000/api/token/", data=login_data)
+        r2 = requests.api.post("https://factory-bot-site.herokuapp.com//api/token/", data=login_data)
 
         payload = dict(token=r.json()["token"],chat_id=chat_id)
         headers = {'Authorization': 'JWT ' + r2.json()['access']}
         # http://127.0.0.1:8000/api/bots/
-        r3 = requests.api.post("http://127.0.0.1:8000/api/bots/", headers=headers, data=payload)
+        r3 = requests.api.post("https://factory-bot-site.herokuapp.com//api/bots/", headers=headers, data=payload)
         
         if(r3.status_code == 200):
             bot.send_message(chat_id, "Токен создан или уже есть")
