@@ -76,7 +76,7 @@ def generate_token(chat_id):
         r3 = requests.api.post("https://factory-bot-site.herokuapp.com//api/bots/", headers=headers, data=payload)
         
         if(r3.status_code == 200):
-            bot.send_message(chat_id, "Токен создан или уже есть")
+            bot.send_message(chat_id, "Токен создан")
         elif(r3.status_code == 201):
             bot.send_message(chat_id, "Токен уже есть")
         else:
